@@ -1,0 +1,89 @@
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="login100-pic js-tilt" data-tilt>
+                <img src="" alt="IMG">
+            </div>
+
+            <form [formGroup]="RegisterForm" (ngSubmit)="onRegister()" class="login100-form">
+                <span class="login100-form-title">
+                    <img src="assets/HECHO POR NOSOTROS/descarga.jpeg" alt="IMG">
+                </span>
+
+                <div class="contraseña">
+
+
+                    <mat-icon class="mt-2">person</mat-icon>
+                    <div class="wrap-input100 validate-input" data-validate="Username is required">
+                        <input class="input100 font_login" type="Username" placeholder="Nombre de Usuario"
+                            formControlName="Username">
+                    </div>
+                </div>
+                <div class="text-danger" *ngIf="valueRequired('Username')">
+                    Username requerido.</div>
+
+                <div class="contraseña">
+                    <mat-icon class="mt-2">alternate_email</mat-icon>
+                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                        <input class="input100 font_login" type="email" name="email" placeholder="Dirección de email"
+                            formControlName="email">
+                    </div>
+                </div>
+
+                <div class="text-danger" *ngIf="valueRequired('email')">
+                    Email requerido.</div>
+                <div class="text-danger" *ngIf="RegisterForm.get('email').invalid && RegisterForm.get('email').touched">
+                    Formato de email incorrecto.</div>
+
+                <div class="contraseña">
+                    <mat-icon class="mt-2">lock</mat-icon>
+                    <div class="wrap-input100 validate-input" data-validate="password is required">
+                        <input class="input100 font_login" type="Password" name="Password" placeholder="Password"
+                            formControlName="Password">
+                    </div>
+                </div>
+
+                <div class="text-danger"
+                    *ngIf="RegisterForm.get('Password').invalid && RegisterForm.get('Password').touched">
+                    Contraseña requerida(Debe tener un mínimo de 6 caracteres).</div>
+
+                <div class="contraseña">
+
+                    <mat-icon class="mt-2">lock</mat-icon>
+                    <div class="wrap-input100 validate-input" data-validate="password is required">
+
+                        <input class="input100 font_login" type="Password" placeholder="Repeat Password"
+                            formControlName="Repeatpassword">
+                        <span class="focus-input100"></span>
+
+                    </div>
+                </div>
+
+                <div class="text-danger"
+                    *ngIf="RegisterForm.get('Repeatpassword').invalid && RegisterForm.get('Repeatpassword').touched">
+                    Contraseña requerida(Debe tener un mínimo de 6 caracteres).</div>
+
+                <div class="text-danger"
+                    *ngIf="RegisterForm.hasError('notSame')&& RegisterForm.get('Repeatpassword').touched">
+                    Las contraseñas no coinciden
+                </div>
+                <div class="container-login100-form-btn">
+                    <button type="submit" class="login100-form-btn font_login" [disabled]="RegisterForm.invalid">
+                        Regístrate 
+                    </button>
+                </div>
+                
+                <div *ngIf="success" class="alert alert-success" role="alert"
+                    style="text-align: center; padding: 20px;">
+                    Usuario Creado exitosamente!
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="failure"
+                    style="text-align: center; padding: 20px; margin-top: 20px;">
+                    Ocurrió un error en el registro!
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+</div>

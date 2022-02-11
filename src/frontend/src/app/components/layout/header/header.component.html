@@ -1,0 +1,33 @@
+
+    <div style="grid-column: 1 / 3;">
+        <header>
+            <ul class="nav justify-content-end" id="header"
+                style="background-color: #963821; padding: 40px;position:fixed; width:100%; height: 104px;">
+                <div class="containerside">
+                    <a [routerLink]="['/init/home']">
+                        <img id="#forward"
+                            src="../../../../assets/HECHO POR NOSOTROS/icons/2x/baseline_account_box_white_24dp.png"
+                            alt="">
+
+                    </a>
+                </div>
+                <div class="containerside">
+                    <!-- <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false"
+                        style="font-family:avenir;background-color:#963821; border-color: #963821;">
+                        ES
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="font-family:avenir;">
+                        <li><a class="dropdown-item">Action</a></li>
+                        <li><a class="dropdown-item">Another action</a></li>
+                        <li><a class="dropdown-item">Something else here</a></li>
+                    </ul>
+                </div> -->
+                    <mat-icon class="cb" style="cursor: pointer;" (click)="cerrar_secion()">logout</mat-icon>
+
+                </div>
+
+            </ul>
+        </header>
+    </div>

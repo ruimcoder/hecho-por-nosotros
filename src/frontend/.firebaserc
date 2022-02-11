@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "login-lucas": {
+      "hosting": {
+        "login": [
+          "login-lucas"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "login-lucas"
+  }
+}

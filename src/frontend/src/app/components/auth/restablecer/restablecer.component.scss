@@ -1,0 +1,75 @@
+.card-body{
+    width: 100%;
+    min-height: 50vh;
+   padding: 20px 0px;
+   justify-content: center;
+   align-items: center;
+
+}
+
+.foto{
+    align-items: center;
+    padding: 30px;
+    width: 50%;
+    margin: 0 180px;
+}
+
+.form-control{
+    width: 65%;
+    margin: 20px auto;
+}
+
+.fa-at{
+    float: left;
+    padding: 10px 5px;
+    margin: auto;
+}
+
+.btn{
+    margin: 20px ;
+    background: #006271;
+    color: white;
+    width: 45%;
+}
+
+.text-center{
+    font-size: 50px;
+}
+
+.texto{
+    padding: 30px 0;
+}
+
+.wrap-login100{
+    width: 50%;
+  background: #F8F9FA;
+  box-shadow: 4px 4px 4px 0px #00000040;
+}
+
+.container-login100{
+    width: 100%;  
+    min-height: 50vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    padding: 40px;
+}
+
+.email{
+    float: left;
+    display: flex;
+    padding: 10px 100px ;
+    
+}
+
+.fa-at{
+    width: 60px;
+padding: 10px;
+
+}

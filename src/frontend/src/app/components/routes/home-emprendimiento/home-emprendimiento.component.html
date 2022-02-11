@@ -1,0 +1,588 @@
+<div class="encerrar" *ngIf="cardsContent.length === 0">
+    <div class="ultima">
+        <h3>Bienvenido</h3>
+    </div>
+    <img src="assets/Layer 2.png" alt="foto" class="fotob">
+    <p class="texto" style="font-weight: 600">Para comenzar, te invitamos a crear tu emprendimiento.!</p>
+
+    <button class="boton" [routerLink]="['/init/Perfil/0']">+ Crear ahora</button>
+</div>
+
+<div class="encerrar" *ngIf="cardsContent.length > 0">
+    <div class="ultima">
+        <h3>Bienvenido</h3>
+        <div class="artesano">
+            <div class="naranja ">
+                Artesano
+            </div>
+            <div class="row" *ngFor="let item of cardsContent">
+                <div class="col-3 mover">
+                    <img [src]="item.portada" class="imag" alt="...">
+                </div>
+                <div class="col-3 cajita">
+                    <div class="mover1">
+                        <img [src]="item.logo" id="circulo2">
+
+
+
+                    </div>
+                    <h4 class="mt-5 text-center" style="color: rgb(59, 55, 55); font-weight:600;">{{item.name |
+                        titlecase}}</h4>
+                    <div class="moverb">
+                        <button class="color" [routerLink]="['/landing',item.id_emprendimiento]">Ver Landing</button>
+                    </div>
+                </div>
+
+                <div class="col-4 m3">
+
+
+                    <h4><strong style="color: rgb(0, 0, 0); font-weight:300;">
+                            <mat-icon style="margin-top: 5%;">room</mat-icon>
+                            {{item.pais}}
+                        </strong></h4>
+
+
+
+
+                    <h4><strong style="color: rgb(0, 0, 0); font-weight:300;">
+                            <mat-icon>email</mat-icon>
+                            {{item.email}}
+                        </strong></h4>
+
+
+                    <div style="margin-left: -8%; margin-top: 6%;">
+                        <button class="color1" [routerLink]="['/init/Perfil/',item.id_emprendimiento]">Editar
+                            emprendimiento</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="otro" *ngIf="cardsContent.length > 0">
+    <h3 style="font-weight: 700; position: absolute; margin-top: -3%; margin-left: -1%;">
+        {{listado_puntodeventa.length}}</h3>
+    <button class="boton1" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+        data-bs-whatever="@getbootstrap" (click)="nueva_tienda()">Agregar otro
+    </button>
+    <!-- <svg width="36" class="persona" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+            d="M28.5 10.5H36V13.5H28.5V10.5ZM25.5 18H36V21H25.5V18ZM30 25.5H36V28.5H30V25.5ZM3 33C3 29.8174 4.26428 26.7652 6.51472 24.5147C8.76516 22.2643 11.8174 21 15 21C18.1826 21 21.2348 22.2643 23.4853 24.5147C25.7357 26.7652 27 29.8174 27 33H24C24 30.6131 23.0518 28.3239 21.364 26.636C19.6761 24.9482 17.3869 24 15 24C12.6131 24 10.3239 24.9482 8.63604 26.636C6.94821 28.3239 6 30.6131 6 33H3ZM15 19.5C10.0275 19.5 6 15.4725 6 10.5C6 5.5275 10.0275 1.5 15 1.5C19.9725 1.5 24 5.5275 24 10.5C24 15.4725 19.9725 19.5 15 19.5ZM15 16.5C18.315 16.5 21 13.815 21 10.5C21 7.185 18.315 4.5 15 4.5C11.685 4.5 9 7.185 9 10.5C9 13.815 11.685 16.5 15 16.5Z"
+            fill="#343A40" />
+    </svg> -->
+
+    <mat-icon style="position: absolute; margin-top: -40px; margin-left: 35px;">card_travel</mat-icon>
+</div>
+
+<!--CARDS DE PUNTOS-->
+
+<div class="colores" *ngIf="cardsContent.length > 0">
+    <h3 style="margin-left: 250px; font-size:x-large; font-weight: 500;">Puntos de Ventas</h3>
+    <div class="row mov" *ngFor="let punto_id of listar_puntos;">
+        <div class="col-sm-2 movi" *ngFor="let puntos of listado_puntodeventa;">
+
+
+
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="casa">
+                <path
+                    d="M14 8.82798V13.3333H14.6666V14.6666H1.33329V13.3333H1.99996V8.82798C1.58954 8.55404 1.2531 8.18301 1.02051 7.74782C0.787911 7.31264 0.666354 6.82676 0.666626 6.33331C0.666626 5.78198 0.81596 5.25065 1.08863 4.79798L2.89663 1.66665C2.95514 1.5653 3.03929 1.48115 3.14064 1.42263C3.24198 1.36412 3.35694 1.33332 3.47396 1.33331H12.5266C12.6436 1.33332 12.7586 1.36412 12.8599 1.42263C12.9613 1.48115 13.0454 1.5653 13.104 1.66665L14.9053 4.78798C15.303 5.44856 15.4308 6.237 15.2622 6.98941C15.0936 7.74181 14.6415 8.4003 14 8.82798V8.82798ZM12.6666 9.31465C12.2082 9.36607 11.7442 9.31101 11.3106 9.15375C10.877 8.99649 10.4855 8.74128 10.1666 8.40798C9.88677 8.70069 9.55049 8.93366 9.1781 9.09281C8.80571 9.25197 8.40493 9.33401 7.99996 9.33398C7.59508 9.33418 7.19436 9.25235 6.82198 9.09343C6.44959 8.9345 6.11327 8.70179 5.83329 8.40931C5.51438 8.74249 5.12288 8.99758 4.68926 9.15472C4.25565 9.31186 3.79162 9.36682 3.33329 9.31531V13.3333H12.6666V9.31531V9.31465ZM3.85929 2.66665L2.23729 5.47531C2.07968 5.86474 2.07495 6.29933 2.22405 6.6921C2.37315 7.08487 2.66508 7.40684 3.04141 7.59358C3.41775 7.78031 3.85072 7.81803 4.25368 7.69919C4.65664 7.58035 4.99985 7.31371 5.21463 6.95265C5.43796 6.39465 6.22796 6.39465 6.45196 6.95265C6.57549 7.26226 6.78903 7.52771 7.06498 7.71472C7.34093 7.90172 7.66661 8.00168 7.99996 8.00168C8.3333 8.00168 8.65899 7.90172 8.93494 7.71472C9.21089 7.52771 9.42443 7.26226 9.54796 6.95265C9.77129 6.39465 10.5613 6.39465 10.7853 6.95265C10.8718 7.16561 11.0014 7.35838 11.1661 7.51883C11.3307 7.67928 11.5267 7.80395 11.7418 7.88499C11.9569 7.96604 12.1864 8.00171 12.416 7.98977C12.6456 7.97783 12.8702 7.91853 13.0757 7.8156C13.2812 7.71267 13.4633 7.56833 13.6103 7.39167C13.7574 7.215 13.8663 7.00982 13.9303 6.78903C13.9942 6.56824 14.0118 6.3366 13.9819 6.10868C13.952 5.88076 13.8753 5.66149 13.7566 5.46465L12.14 2.66665H3.85996H3.85929Z"
+                    fill="white" />
+            </svg>
+
+
+            <div class="card-body">
+                <div class="marron card-title">
+
+                    <div class="cont">
+                        <p style="margin-top: 10px; font-weight: 500;">Puntos de Venta</p>
+
+
+                        <div style="margin-left: 25px;">
+                            <mat-icon style="margin-left: 25px;" style="cursor:pointer" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal" (click)="editar_punto(puntos)" class="color_v">create
+                            </mat-icon>
+
+
+                            <mat-icon style="cursor: pointer;" (click)="eliminar_punto(puntos.id)">delete
+                            </mat-icon>
+                        </div>
+                    </div>
+
+                </div>
+                <h4> <strong> {{puntos.nombre | titlecase }}</strong></h4>
+                <p class="card-text">
+                    <mat-icon>location_on</mat-icon> Calle {{puntos.direccion}},
+                    {{puntos.pais}} (CP {{puntos.cp}})
+                </p>
+                <p class="card-text">
+                    <mat-icon>language</mat-icon> {{puntos.web}}
+                </p>
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<ng-template #confirmationModal let-modal>
+    <div class="alert alert-success" role="alert" style="display: block; text-align: center; margin-bottom: 0px;">
+        <form style="margin: 15px -25px;">
+            <div class="color" style="box-shadow: 0px 4px 4px 0px #00000040; margin: 30px 0;">
+                <p class="titulo3" [ngbTooltip]="tipContent16"> Puntos SSde venta</p>
+                <ng-template #tipContent16>
+                    <p>En donde se pude comprar su productos fisicamente - nombra aqui la ubicacion de cada uno de ellos
+                    </p>
+                </ng-template>
+                <svg width="16" height="16" class="info-circle19" viewBox="0 0 16 16" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0)">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M8 15C9.85652 15 11.637 14.2625 12.9497 12.9497C14.2625 11.637 15 9.85652 15 8C15 6.14348 14.2625 4.36301 12.9497 3.05025C11.637 1.7375 9.85652 1 8 1C6.14348 1 4.36301 1.7375 3.05025 3.05025C1.7375 4.36301 1 6.14348 1 8C1 9.85652 1.7375 11.637 3.05025 12.9497C4.36301 14.2625 6.14348 15 8 15ZM8 16C10.1217 16 12.1566 15.1571 13.6569 13.6569C15.1571 12.1566 16 10.1217 16 8C16 5.87827 15.1571 3.84344 13.6569 2.34315C12.1566 0.842855 10.1217 0 8 0C5.87827 0 3.84344 0.842855 2.34315 2.34315C0.842855 3.84344 0 5.87827 0 8C0 10.1217 0.842855 12.1566 2.34315 13.6569C3.84344 15.1571 5.87827 16 8 16Z"
+                            fill="#E83E8C" />
+                        <path
+                            d="M8.92995 6.58789L6.63995 6.87489L6.55795 7.25489L7.00795 7.33789C7.30195 7.40789 7.35995 7.51389 7.29595 7.80689L6.55795 11.2749C6.36395 12.1719 6.66295 12.5939 7.36595 12.5939C7.91095 12.5939 8.54395 12.3419 8.83095 11.9959L8.91895 11.5799C8.71895 11.7559 8.42695 11.8259 8.23295 11.8259C7.95795 11.8259 7.85795 11.6329 7.92895 11.2929L8.92995 6.58789Z"
+                            fill="#E83E8C" />
+                        <path
+                            d="M8 5.5C8.55228 5.5 9 5.05228 9 4.5C9 3.94772 8.55228 3.5 8 3.5C7.44772 3.5 7 3.94772 7 4.5C7 5.05228 7.44772 5.5 8 5.5Z"
+                            fill="#E83E8C" />
+                    </g>
+                    <defs>
+                        <clipPath id="clip0">
+                            <rect width="16" height="16" fill="white" />
+                        </clipPath>
+                    </defs>
+                </svg>
+                <div class="row" style="margin-top: -50px;">
+                    <div class="col-sm-7">
+
+                        <div class="card-body">
+
+                            <p class="card-text">Dirección</p>
+                            <input class="input108 form-control" style="width: 102%;" type="text" name="Password"
+                                placeholder="Ej: Madrid 412 Oeste" formControlName="direccion">
+                        </div>
+                        <div class="text-danger" style="margin:-5px 15px" *ngIf="valueRequiredPunto('direccion')">
+                            historia incorrecto.</div>
+                    </div>
+                    <div class="col-sm-5">
+
+                        <div class="card-body">
+
+                            <p class="card-text" style="margin:0 79px;">Nombre del local (Opcional)</p>
+                            <input class="input108 form-control" style="margin: 0 79px; width: 72%;" type="text"
+                                name="Password" placeholder="Add text" formControlName="nombre">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+
+                        <div class="card-body" style="margin-top:10px">
+
+                            <p class="card-text" style="margin-top: -20px;">Dirección</p>
+                            <input class="input108 form-control" style="width:72%" type="text" name="Password"
+                                placeholder="Ej: Madrid 412 Oeste" formControlName="direccionSec">
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4">
+
+                        <div class="card-body">
+
+                            <p class="card-text" style="margin-top: -20px;">Ciudad / Población</p>
+                            <input class="input108 form-control" style="width:72%" type="text" name="Password"
+                                placeholder="Add text" formControlName="ciudad">
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4">
+
+                        <div class="card-body">
+
+                            <p class="card-text" style="margin-top: -20px;">Código postal</p>
+                            <input class="input108 form-control form6" style="width: 91.4%;" type="text" name="Password"
+                                placeholder="Add text" formControlName="cp">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+
+                        <div class="card-body" style="margin-top:0px">
+
+                            <p class="card-text">Tipo de tienda</p>
+                            <select class="form-select form-select-sm form3" aria-label=".form-select-sm example"
+                                formControlName="tipo">
+                                <option>Seleccione</option>
+                                <option *ngFor="let tipo of tipos" [value]="tipo"> {{tipo}}</option>
+                            </select>
+
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4">
+
+                        <div class="card-body" style="margin-top:30px">
+
+                            <p class="card-text" [ngbTooltip]="tipContent17">Contacto</p>
+                            <ng-template #tipContent17>
+                                <p>Hay un contacto para el punto de venta</p>
+                            </ng-template>
+                            <svg width="16" height="16" class="info-circle20" viewBox="0 0 16 16" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0)">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M8 15C9.85652 15 11.637 14.2625 12.9497 12.9497C14.2625 11.637 15 9.85652 15 8C15 6.14348 14.2625 4.36301 12.9497 3.05025C11.637 1.7375 9.85652 1 8 1C6.14348 1 4.36301 1.7375 3.05025 3.05025C1.7375 4.36301 1 6.14348 1 8C1 9.85652 1.7375 11.637 3.05025 12.9497C4.36301 14.2625 6.14348 15 8 15ZM8 16C10.1217 16 12.1566 15.1571 13.6569 13.6569C15.1571 12.1566 16 10.1217 16 8C16 5.87827 15.1571 3.84344 13.6569 2.34315C12.1566 0.842855 10.1217 0 8 0C5.87827 0 3.84344 0.842855 2.34315 2.34315C0.842855 3.84344 0 5.87827 0 8C0 10.1217 0.842855 12.1566 2.34315 13.6569C3.84344 15.1571 5.87827 16 8 16Z"
+                                        fill="#E83E8C" />
+                                    <path
+                                        d="M8.92995 6.58789L6.63995 6.87489L6.55795 7.25489L7.00795 7.33789C7.30195 7.40789 7.35995 7.51389 7.29595 7.80689L6.55795 11.2749C6.36395 12.1719 6.66295 12.5939 7.36595 12.5939C7.91095 12.5939 8.54395 12.3419 8.83095 11.9959L8.91895 11.5799C8.71895 11.7559 8.42695 11.8259 8.23295 11.8259C7.95795 11.8259 7.85795 11.6329 7.92895 11.2929L8.92995 6.58789Z"
+                                        fill="#E83E8C" />
+                                    <path
+                                        d="M8 5.5C8.55228 5.5 9 5.05228 9 4.5C9 3.94772 8.55228 3.5 8 3.5C7.44772 3.5 7 3.94772 7 4.5C7 5.05228 7.44772 5.5 8 5.5Z"
+                                        fill="#E83E8C" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0">
+                                        <rect width="16" height="16" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            <input class="input108 form-control" style="width:72%;" type="text"
+                                placeholder="Dirección de email" formControlName="contacto">
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4">
+
+                        <div class="card-body" style="margin-top: 30px;">
+
+                            <p class="card-text">Sitio web</p>
+                            <input class="input108 form-control" style="width: 91.5%;" type="text" name="Password"
+                                placeholder="Add text" formControlName="web">
+                        </div>
+
+                    </div>
+                </div>
+                <div>
+                    <button class="boton" type="button">Agregar otra tienda</button>
+
+                </div>
+                <button class="guardar6" type="submit">Guardar</button>
+            </div>
+        </form>
+        <button class="btn btn-primary" (click)="modal.close('cerro')">
+            cerrar
+        </button>
+    </div>
+
+
+
+</ng-template>
+
+
+<div class="encerrarp">
+
+    <div class="colores mt-5" *ngIf="cardsContent.length > 0">
+
+        <h3 style="margin-left: 250px; font-size:x-large; font-weight: 500;" class="mt-5">Proveedores</h3>
+
+
+
+
+        <h3 style="font-weight: 700; position: absolute; margin-top: -3%; margin-left: 73%;">
+            {{listado_proveedores.length}}</h3>
+        <button type="button" class="boton1" data-bs-toggle="modal" data-bs-target="#exampleModalProv"
+            data-bs-whatever="@getbootstrap" (click)="agregar_proveedor()">Agregar otro proveedor</button>
+
+        <svg width="36" class="persona" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M28.5 10.5H36V13.5H28.5V10.5ZM25.5 18H36V21H25.5V18ZM30 25.5H36V28.5H30V25.5ZM3 33C3 29.8174 4.26428 26.7652 6.51472 24.5147C8.76516 22.2643 11.8174 21 15 21C18.1826 21 21.2348 22.2643 23.4853 24.5147C25.7357 26.7652 27 29.8174 27 33H24C24 30.6131 23.0518 28.3239 21.364 26.636C19.6761 24.9482 17.3869 24 15 24C12.6131 24 10.3239 24.9482 8.63604 26.636C6.94821 28.3239 6 30.6131 6 33H3ZM15 19.5C10.0275 19.5 6 15.4725 6 10.5C6 5.5275 10.0275 1.5 15 1.5C19.9725 1.5 24 5.5275 24 10.5C24 15.4725 19.9725 19.5 15 19.5ZM15 16.5C18.315 16.5 21 13.815 21 10.5C21 7.185 18.315 4.5 15 4.5C11.685 4.5 9 7.185 9 10.5C9 13.815 11.685 16.5 15 16.5Z"
+                fill="#343A40" />
+        </svg>
+
+        <div class="row mov">
+            <div class="col-sm-2 movi" *ngFor="let proveedor of listado_proveedores;">
+
+
+
+                <div class="card-body">
+                    <div class="marronp">
+                        <div class="roww">
+                            <mat-icon>person_outline</mat-icon>
+                            <p class="mt-1" style="font-weight: 500;"> Proveedores</p>
+
+
+
+                            <div class="">
+                                <mat-icon style="cursor:pointer" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModalProv" class="color_v"
+                                    (click)="editar_proveedor(proveedor)">
+                                    create</mat-icon>
+
+
+                                <mat-icon style="cursor: pointer;" (click)="eliminar_proveedor(proveedor.id)">delete
+                                </mat-icon>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+
+                        <div class="ca mt-1 visible-scrollbar">
+
+                            <div class="cajita_materiales me-2 text-center"
+                                *ngFor="let material of proveedor.materiales;let i = index">
+
+                                {{material.nombre}}
+
+
+                            </div>
+
+                        </div>
+
+                        <h4 class="card-title text-center flex-start mt-2" style="font-weight: 500;">{{proveedor.ciudad
+                            |
+                            titlecase }},
+                            {{proveedor.pais | titlecase}}</h4>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            ...
+        </div>
+    </div>
+</div>
+
+Button trigger modal -->
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" *ngFor="let item of cardsContent">
+            <div class="modal-header">
+                <h1 class="modal-title" id="exampleModalLabel">Punto de venta</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="puntoventa" (ngSubmit)="crear_punto(item.id_emprendimiento)">
+                    <div class="row" style="margin-top: 0px;">
+                        <div class="col-sm-6">
+
+                            <div class="card-body">
+
+                                <p class="card-text">Dirección</p>
+                                <input class="input108 form-control" style="width: 102%;" type="text"
+                                    placeholder="Ej: Madrid 1521 Sur" formControlName="direccion">
+                            </div>
+                            <div class="text-danger" style="margin:-5px 15px" *ngIf="valueRequiredPunto('direccion')">
+                                historia incorrecto.</div>
+                        </div>
+                        <div class="col-sm-6">
+
+                            <div class="card-body">
+
+                                <p class="card-text" style="margin:0px -7px;">Nombre del local (Opcional)</p>
+                                <input class="input108 form-control" style="margin: 12px -10px; width: 100%;"
+                                    type="text" placeholder="Escribir nombre" formControlName="nombre">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <div class="card-body" style="margin-top:10px">
+
+                                <p class="card-text" style="margin-top: -10px;">Pais</p>
+                                <input class="input108 form-control" style="width:102%" type="text"
+                                    placeholder="Ej: España" formControlName="pais">
+                            </div>
+
+                        </div>
+                        <div class="col-sm-6">
+
+                            <div class="card-body">
+
+                                <p class="card-text" style="margin-left: -6px;">Ciudad / Población</p>
+                                <input class="input108 form-control" style="width:100%; margin-left: -10px;" type="text"
+                                    placeholder="Madrid" formControlName="ciudad">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <div class="card-body" style="margin-top:0px">
+
+                                <p class="card-text">Tipo de tienda</p>
+                                <select class="form-select form-select-sm form3" aria-label=".form-select-sm example"
+                                    formControlName="tipo">
+                                    <option disabled>Seleccionar Tienda</option>
+                                    <option *ngFor="let tipo of tipos" [value]="tipo"> {{tipo}}</option>
+                                </select>
+
+                            </div>
+
+                        </div>
+                        <div class="col-sm-6">
+
+                            <div class="card-body">
+
+                                <p class="card-text" style="margin-top: 0px;">Código postal</p>
+                                <input class="input108 form-control form6" style="width: 91.4%;" type="text"
+                                    placeholder="Ej: 28" formControlName="cp">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <div class="card-body" style="margin-top:0px">
+
+                                <p class="card-text">Contacto</p>
+                                <input class="input108 form-control form6" style="width: 91.4%;" type="text"
+                                    placeholder="example@gmail.com" formControlName="contacto">
+
+                            </div>
+
+                        </div>
+                        <div class="col-sm-6">
+
+                            <div class="card-body">
+
+                                <p class="card-text" style="margin-top: 0px;">Sitio Web</p>
+                                <input class="input108 form-control form6" style="width: 91.4%;" type="text"
+                                    placeholder="www.example.com" formControlName="web">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+
+
+
+                        <button type="submit" class="btn btn-primary mt-4">Agregar</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade mod" id="exampleModalProv" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" *ngFor="let item of cardsContent">
+            <div class="modal-header ps-4 pb-0 border-0">
+                <h1 class="modal-title" id="exampleModalLabel">Proveedores</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body pt-0 border-0">
+                <form [formGroup]='proveedorForm' (ngSubmit)="crear_proveedor(item.id_emprendimiento)">
+                    <div class="col-sm-10 w-100">
+                        <div class="card-body">
+                            <p>Nombre del Proveedor</p>
+                            <input class="input115 form-control" type="text" placeholder="Escribir el nombre del proovedor"
+                                formControlName="nombre">
+                        </div>
+                        <div class="text-danger"  *ngIf="valueRequiredPunto('nombre')">
+                            historia incorrecto.
+                        </div>
+                    </div>
+                    <div class="col-sm-10 w-100">
+                        <div class="card-body">
+                            <div class="arriba">
+                                <p class="card-text5">Dirección</p>
+                                <input class="input115 form-control" type="text" placeholder="Valencia 151 Norte"
+                                    formControlName="direccion">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tienda">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="card-body">
+
+                                    <p class="card-text">Pais</p>
+                                    <input class="input108 form-control" style="width:95%" type="text"
+                                        placeholder="Suecia" formControlName="pais">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="card-body">
+                                    <p class="card-text">Ciudad / Población</p>
+                                    <input class="input108 form-control" type="text"
+                                        placeholder="Barcelona" formControlName="ciudad">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="card-body">
+                                    <p class="card-text">Codigo Postal</p>
+                                    <input class="input108 form-control" type="text" formControlName="cp"
+                                        placeholder="330">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-sm-12">
+                            <h4 class="px-3 m-0">Materiales Comprados al Proveedor</h4>
+                            <div class="card-body d-flex flex-wrap">
+                                <div *ngFor="let materiales of listaMateriales; let i = index;" class="mb-2 me-4">
+                                    <input class="form-check-input me-0" type="checkbox" id="flexCheckDefault{{i}}"
+                                        [value]="materiales?.id" name="materiales" [ngModelOptions]="{standalone: true}"
+                                        [(ngModel)]="materiales.selected">
+                                    <label class="form-check-label" for="flexCheckDefault{{i}}">
+                                        &nbsp; {{materiales?.nombre}} 
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="card-body w-100">
+                                    <p class="card-text">Especifique Material</p>
+                                    <input class="input108 form-control" type="text" formControlName="especificar"
+                                        placeholder="Escribe el nombre del material">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button  class="btn btn-primary guardar7"
+                            type="submit">Agregar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

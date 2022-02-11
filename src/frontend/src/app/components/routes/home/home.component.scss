@@ -1,0 +1,247 @@
+ @font-face {
+     font-family: avenir;
+     src: url('../../../../assets/fonts/avenir_ff/AvenirLTStd-Book.otf');
+ }
+ #header{
+    position: absolute;
+    z-index: 2!important;
+    font-family:avenir;
+}
+#side{
+    z-index: 3;
+    font-family:avenir;
+}
+
+.grid-continer{
+    display: grid;
+     grid-template-columns: 267px auto;
+      grid-template-rows: auto 1155px;
+}
+
+.container{
+    width:1140px;height:auto;
+     display: flex;
+      margin-top: 50px;
+      margin-left: -13px;
+      padding-left: -100px;
+       padding-top: 30px; 
+    padding-bottom: 30px; 
+    background-color: white;
+     border-radius: 10px;
+}
+
+.btn-primary{
+    margin-right: -00px;
+    margin-top: -150px;
+    height: 40px;
+    border: 2px solid #006271 ;
+     background-color: #F4EEE9;
+     color: #006271; 
+     display: block; 
+}
+
+.agregar22{
+       margin-top: 10%;
+       margin-left: 90%;
+      float: right; 
+}
+
+.boton2{
+  
+    border: 1px solid #963821;
+    color: #963821;
+    background-color: white;
+  
+    margin-left: 10%;
+    margin-top: 10px;
+    background: #006271;
+    color: white;
+  font-size: 16px;
+  padding: 5px 32px;
+   display: flex;
+   height: 30px;
+   border:1px solid #006271 ;
+   border-radius: 4px;
+  
+ 
+}
+
+
+.botonE{
+  
+    border: 1px solid #963821;
+    color: #963821;
+   
+  
+    margin-left: 10%;
+    margin-top: 10px;
+  
+    background-color: white;
+  font-size: 16px;
+  padding: 5px 32px;
+   display: flex;
+   height: 30px;
+ 
+   border-radius: 4px;
+  
+ 
+}
+
+.boton1{
+  
+    height: 30px;
+    margin-top: 10px;
+    background-color: #963821;
+    color: white;
+   float: right;
+   margin-right: 15px;
+   background-color: #963821;
+    border: #963821;
+    border-radius: 4px;
+}
+
+.cajitabotones{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    text-align: center;
+}
+
+.card-img-top{
+    height: 150px !important;
+}
+
+.cardshome{
+    margin-top: 30px;
+    border: none;
+}
+
+.mover{
+    border:1px  solid black; 
+    text-align: center;
+   padding-top: 30px;
+}
+
+.card{
+    position: static;
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family:avenir;
+    //background: url('../../../../assets/descarga\ 3.png');
+    //background-repeat: no-repeat;
+}
+.card-title{
+    text-align: center;
+    font-family:avenir;
+}
+.card-body{
+  
+    border-width: 0.5px;
+    font-family:avenir;
+}
+.contenedorcirculo{
+    font-family:avenir;
+   display: flex;
+    justify-content: center; 
+}
+#circulo{
+    width: 85px;
+    height: 85px;
+    position: absolute;
+    margin-top: -5.4%;
+    margin-left: 8%;
+    border-radius: 150px;
+    border: solid 3px black;
+}
+
+.fuente{
+    font-family: 'Roboto', sans-serif;
+  }
+  
+
+
+.containerside{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+    font-family:avenir;
+}
+.containerside a{
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    font-family:avenir;
+}
+.dropdown ul li a{
+    color: black;
+    font-family:avenir;
+}
+.dropdown{
+    margin-left: 25px;
+    font-family:avenir;
+}
+h3{
+    padding: 0 0px;
+    margin-top: -20px;
+    font-family: Avenir LT Std;
+    font-size: 21px;
+}
+
+
+.img-fluid{
+    padding: 0px;
+    margin: 10px 0px ;
+    width: 100%;
+}
+
+.ultima{
+    background-color: white;
+    padding: 50px 0 ;
+    margin-left: 220px ;
+    margin-top: 50px;
+    height: 600px;
+    width: 80%;
+    box-shadow: 0px 4px 4px 0px #00000040;
+border-radius: 10px;
+}
+
+
+
+.todo{
+    background-color: #E5E5E5;
+    margin-top: -100px;
+    height: 100px;
+}
+
+hr{
+    width: 100%;
+    margin: -10px 00px;
+}
+
+.foto{
+    padding: 20px 220px;
+    margin: auto;
+    
+}
+
+.texto{
+    display: flex;  
+    justify-content: center;
+    text-align: center;
+    font-family: Avenir LT Std
+}
+
+.boton{
+    background: #006271;
+    color: white;
+   margin: auto;
+   display: flex;
+   padding: 5px 55px;
+   border:1px solid #006271 ;
+   border-radius: 3px;
+   margin-top: 20px;
+   width: 30%;
+}

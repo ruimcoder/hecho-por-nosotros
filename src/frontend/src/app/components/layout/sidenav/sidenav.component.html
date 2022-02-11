@@ -1,0 +1,49 @@
+<!--SIDENAV-->
+<div style="grid-column: 1 / 2;">
+    <div id="sidenav" class="row" style="position: static;">
+        <div class="tamaño">
+            <nav class="col-md-3 col-lg-2 d-md-block" id="side" style="background-color: #963821;height: 100%; position: fixed; width: 215px; left: 0px; ">
+                <ul>
+                    <div class="containerside">
+                        <img src="../../../../assets/HECHO POR NOSOTROS/LOGO_HXN_BLANCOFINAL.png" alt=""
+                            style="width: 180px; height: 125,35px; margin-bottom: 150px; margin-top: 30px;">
+                    </div>
+                </ul>
+                <ul>
+                    <div *ngIf="admin" class="containerside" style="display: flex; justify-content: center; margin-bottom: 25px; font-family: avenir;" >
+                        <a [routerLink]="['/init/home']">
+
+                            <img class="foto" src="../../../../assets/HECHO POR NOSOTROS/icons/2x/baseline_house_white_24dp.png"
+                                alt="foto" [routerLink]="['/init/home'] ">
+                            <h3 [routerLink]="['/init/home']">Inicio</h3>
+                          
+                        </a>
+                    </div>
+
+                    <div *ngIf="!admin" class="containerside" style="display: flex; justify-content: center; margin-bottom: 25px; font-family: avenir;" >
+                        <a [routerLink]="['/init/home-emp']">
+
+                            <img class="foto" src="../../../../assets/HECHO POR NOSOTROS/icons/2x/baseline_house_white_24dp.png"
+                                alt="foto" [routerLink]="['/init/home-emp'] ">
+                            <h3 [routerLink]="['/init/home-emp']">Inicio</h3>
+                          
+                        </a>
+                    </div>
+
+
+
+                </ul>
+                <ul>
+                    <div *ngIf="admin" class="containerside" style="display: flex; justify-content: center; margin-bottom: 25px; font-family: avenir;">
+                        
+                        <a [routerLink]="['/init/home-user']"  >
+                            <img  class="fotoE" src="../../../../assets/HECHO POR NOSOTROS/icons/2x/baseline_account_box_white_24dp.png"
+                                alt="foto" >
+                            <h3 class="link">Emprendimientos</h3>
+                        </a>
+                    </div>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

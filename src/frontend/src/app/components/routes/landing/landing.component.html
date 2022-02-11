@@ -1,0 +1,452 @@
+<main class="container-fluid p-0 m-0 bg-base">
+
+    <!-- Imagen de fondo -->
+    <section id="imagenFondo" class="position-relative img-fondo">
+        <nav id="nav" class="bg-nav d-flex justify-content-between align-items-center">
+            <div>
+                <a class="ms-3" [routerLink]="['/init/home-user']">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#fff"
+                        class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                    </svg>
+                </a>
+            </div>
+            <div class="d-flex h-100 justify-content-between align-items-center">
+                <ul class="d-flex text-white p-2 m-0 ">
+                    <li class="nav-item border-end" style="cursor: pointer;">
+                        <a class="fw-light py-0 link-light px-4 nav-link text-white"
+                            (click)="scrollTo('historia')">HISTORIA</a>
+                    </li>
+                    <li class="nav-item border-end" style="cursor: pointer;">
+                        <a class="link-light py-0 fw-light px-4 nav-link" (click)="scrollTo('tecnica')">TÉCNICA</a>
+                    </li>
+                    <li class="nav-item" style="cursor: pointer;">
+                        <a class="link-light px-4 py-0 fw-light nav-link" (click)="scrollTo('contacto')">CONTACTO</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div style="width: 1px; height: 1px;">
+            </div>
+        </nav>
+
+        <div class="container p-0 d-flex justify-content-center align-items-center container-logo position-absolute">
+            <div class="bg-nav text-shadow text-white text-center rounded d-flex flex-column p-3">
+                <h1 class="fs-1">{{ data?.nombre }}</h1>
+                <h3 class="fs-4"> {{ data?.slogan}}</h3>
+            </div>
+        </div>
+
+
+
+        <!-- Sección de Historia -->
+        <div class="container bg-white container-section section-history mb-5" style="box-shadow: none;">
+            <div class="row h-100 div-scroll">
+                <div class="col-6 p-sm-5 h-100">
+                    <img *ngFor="let img of data?.historia?.imagenes" class="img-fluid mb-4" src="{{ img }}"
+                        alt="imagen-galeria">
+                </div>
+                <div id="historia" class="scrollspy-example col-6 p-sm-5 lh-lg h-100">
+                    <h3 class="fw-bold fs-2 mb-4 text-uppercase">{{ data?.historia?.tipo }}</h3>
+                    <div class="text-muted text-break text-wraper div-scroll h-100">
+                        <p>
+                            {{ data?.historia?.texto }}
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Sección de técnicas de producción -->
+    <section class="container container-section bg-white mb-5" style="margin-top: 370px;">
+        <div class="row pb-3 h-100 d-flex flex-column justify-content-center">
+            <div id="tecnica" class="offset-2 col-8 offset-2 p-5 lh-lg">
+                <h2 class="fs-3 mb-4 fw-bold text-center">TÉCNICAS DE PRODUCCIÓN</h2>
+                <div class="text-muted text-break text-wraper div-scroll" style="height: 200px;">
+                    <p>
+                        {{data?.tecnica?.texto}}
+                    </p>
+                </div>
+            </div>
+            <ng-container>
+                <div *ngIf="data?.tecnica?.imagenes.length < 4 || data?.tecnica?.imagenes.length === 4 else tecnicas"
+                    class="d-flex justify-content-center align-items-center">
+                    <div *ngFor="let img of data?.tecnica?.imagenes" class="card me-3"
+                        style="height: 260px; width: 260px;">
+                        <img src="{{ img }}" class="img-fluid" style="height: 100%; width: 260px;"
+                            alt="imagen certificados">
+                    </div>
+                </div>
+                <ng-template #tecnicas>
+                    <carousel [autoplay]="true">
+                        <div *ngFor="let img of data?.certificados" class="carousel-cell">
+                            <img class="img-fluid" alt="imagen certificado" src="{{ img }}">
+                        </div>
+                    </carousel>
+                </ng-template>
+            </ng-container>
+        </div>
+    </section>
+
+    <!-- Sección de Certificados -->
+    <section class="container h-100 container-section p-5 bg-white mb-5">
+        <div class="row d-flex justify-content-center text-center">
+            <h2 class="fw-bold fs-3 mb-3">Certificados</h2>
+            <ng-container>
+                <div *ngIf="data?.certificados.length < 4 || data?.certificados.length === 4 else certificados"
+                    class="d-flex justify-content-center align-items-center">
+                    <div *ngFor="let img of data?.certificados" class="card me-3" style="height: 260px; width: 260px;">
+                        <img src="{{ img }}" class="img-fluid" style="height: 100%; width: 260px;"
+                            alt="imagen certificados">
+                    </div>
+                </div>
+                <ng-template #certificados>
+                    <carousel [autoplay]="true">
+                        <div *ngFor="let img of data?.certificados" class="carousel-cell">
+                            <img class="img-fluid" alt="imagen certificado" src="{{ img }}">
+                        </div>
+                    </carousel>
+                </ng-template>
+            </ng-container>
+        </div>
+    </section>
+
+
+    <!-- Sección de metas de desarrollo -->
+    <section class="container container-section p-5 bg-white mb-5">
+        <div class="row d-flex justify-content-center text-center">
+            <h2 class="fw-bold fs-3 mb-5">Meta de desarrollo</h2>
+            <ng-container>
+                <div *ngIf="data?.metas?.length < 4 || data?.metas?.length === 4 else metasTemplate"
+                    class="d-flex justify-content-center align-items-center">
+                    <div *ngFor="let img of data?.metas" class="card border-0 d-flex justify-content-center"
+                        style="width: 14rem;">
+                        <img [src]="img.image" class="card-img-top img-fluid m-auto"
+                            style="height: 150px; width: 150px;" alt="metas de desarrollo">
+                    </div>
+                </div>
+                <ng-template #metasTemplate>
+                    <carousel [dots]="true" [autoplay]="true">
+                        <div *ngFor="let img of data?.metas" class="carousel-cell">
+                            <img class="img-fluid" [src]="img.image">
+                        </div>
+                    </carousel>
+
+                </ng-template>
+            </ng-container>
+        </div>
+    </section>
+
+    <!-- Sección de logros -->
+    <section class="container img-presentation section-height container-section mb-5">
+        <div class="row h-100">
+            <div
+                class="col-3 d-flex justify-content-center align-items-centerd-flex justify-content-center align-items-center">
+                <span>
+                    <svg width="82" height="86" viewBox="0 0 82 86" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="82" height="86" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_1819_12351"
+                                    transform="translate(-0.000502619) scale(0.00113751)" />
+                            </pattern>
+                            <image id="image0_1819_12351" width="880" height="922"
+                                xlink:href="data:image/png;base64,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" />
+                        </defs>
+                    </svg>
+                </span>
+            </div>
+            <div class="col-6 d-flex justify-content-center align-items-center">
+                <h4 class="text-logro text-white text-center lh-base fs-2 ">
+                    "Entre nuestros empleados +{{ porcentajeM }}% son mujeres y +{{ porcentaje }}% son jovenes"
+                </h4>
+            </div>
+            <div class="col-3  d-flex justify-content-center align-items-center">
+                <span>
+                    <svg width="82" height="86" viewBox="0 0 82 86" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <rect width="82" height="86" fill="url(#pattern0)" />
+                        <defs>
+                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <use xlink:href="#image0_1819_12351"
+                                    transform="translate(-0.000502619) scale(0.00113751)" />
+                            </pattern>
+                            <image id="image0_1819_12351" width="880" height="922"
+                                xlink:href="data:image/png;base64,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" />
+                        </defs>
+                    </svg>
+                </span>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Sección de Puntos de Venta -->
+    <ng-container>
+
+        <section *ngIf="data?.puntosDeVenta.length < 4 || data?.puntosDeVenta.length === 4 else puntos"
+            class="container container-section mb-5" style="box-shadow: none;">
+            <div class="p-3 div-puntos d-flex justify-content-center align-items-center mb-5">
+                <div *ngFor="let punto of data?.puntosDeVenta" class="card me-3"
+                    style="width: 282px; max-height: 310px;">
+                    <div class="card-title p-2 px-3 d-flex align-items-end bg-orange text-white fw-bold"
+                        style="font-size: 11px;">
+                        <span class="me-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-shop" viewBox="0 0 16 16">
+                                <path
+                                    d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5zM4 15h3v-5H4v5zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3zm3 0h-2v3h2v-3z" />
+                            </svg>
+                        </span>
+                        Puntos de Venta
+                    </div>
+                    <div class="card-body rounded-0">
+                        <h5 class="fw-bold fs-6 card-title"> {{ punto?.nombre }}</h5>
+                        <div class="text-muted">
+                            <p class="card-text">
+                                <span class="me-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-geo-alt" viewBox="0 0 16 16">
+                                        <path
+                                            d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
+                                        <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                                    </svg>
+                                </span> {{ punto?.direccionSec }}
+                            </p>
+                            <p class="card-text">
+                                <span class="me-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-envelope" viewBox="0 0 16 16">
+                                        <path
+                                            d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
+                                    </svg>
+                                </span> {{ punto?.contacto }}
+                            </p>
+                            <p class="card-text">
+                                <span class="me-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-globe" viewBox="0 0 16 16">
+                                        <path
+                                            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z" />
+                                    </svg>
+                                </span> {{ punto?.web }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <ng-template #puntos>
+            <section class="container container-section mb-5" style="box-shadow: none;">
+                <carousel [autoplay]="true">
+                    <div *ngFor="let punto of data?.puntosDeVenta" class="carousel-cell">
+                        <div class="card" style="height: 200px; width: 200px;">
+                            <div class="card-title p-2 px-3 d-flex align-items-end bg-orange text-white">
+                                <span class="me-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-shop" viewBox="0 0 16 16">
+                                        <path
+                                            d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5zM4 15h3v-5H4v5zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3zm3 0h-2v3h2v-3z" />
+                                    </svg>
+                                </span>
+
+                                Puntos de Venta
+                            </div>
+                            <div class="card-body rounded-0">
+                                <h5 class="fw-bold fs-6 card-title"> {{ punto?.nombre | titlecase }}</h5>
+                                <div class="text-muted">
+                                    <p class="card-text text-wrap text-break">
+                                        <span class="me-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
+                                                <path
+                                                    d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                                            </svg>
+                                        </span> {{ punto?.direccion | titlecase }}
+                                    </p>
+                                    <p class="card-text text-wrap text-break">
+                                        <span class="me-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
+                                            </svg>
+                                        </span> {{ punto?.contacto }}
+                                    </p>
+                                    <p class="card-text text-wrap text-break">
+                                        <span class="me-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-globe" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z" />
+                                            </svg>
+                                        </span> {{ punto?.web }}
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </carousel>
+            </section>
+        </ng-template>
+    </ng-container>
+
+
+    <!-- Sección de proveedores -->
+    <ng-container>
+        <section *ngIf="data?.proveedores?.length < 2 || data?.proveedores?.length === 2 else proveedores"
+            class="container container-section mb-5 p-5" style="box-shadow: none;">
+            <div class="d-flex justify-content-center align-items-center flex-wrap">
+                <div *ngFor="let prov of data?.proveedores" class="card me-3 mb-3" style="width: 335px; height: 130px;">
+                    <div class="row g-0">
+                        <div class="col-md-5 d-flex justify-content-center align-items-center h-100">
+                            <img src="/assets/descarga_2.jpeg" class="logo-hxn bg-white img-fluid rounded-start"
+                                alt="img" style="height: 75px; width: 100px;">
+                        </div>
+                        <div class="col-md-7">
+                            <div class="card-body p-0">
+                                <h5 class="card-title w-100 bg-orange-tr opacity-1 text-white p-1">
+                                    <span class="me-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z" />
+                                        </svg>
+                                    </span> Proovedores
+                                </h5>
+                                <div class="px-3">
+                                    <div class="d-flex mb-3 section-mat">
+                                        <span *ngFor="let mat of prov?.materiales" class="badge me-1 bg-danger">{{
+                                            mat?.nombre }}</span>
+                                    </div>
+                                    <p>{{ prov?.ciudad | titlecase }}, {{ prov?.pais | titlecase }}</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <ng-template #proveedores>
+            <section class="container container-section mb-5 p-0" style="box-shadow: none;">
+                <carousel [height]="130" [cellWidth]="335" [autoplay]="true" class="d-flex align-items-center">
+                    <div *ngFor="let prov of data?.proveedores" class="carousel-cell">
+                        <div class="card" style="max-width: 400px;">
+                            <div class="row g-0">
+                                <div class="col-md-5 d-flex align-items-center justify-content-center">
+                                    <img src="/assets/descarga_2.jpeg" class="logo-hxn bg-white img-fluid rounded-start"
+                                        alt="img" style="height: 75px; width: 100px;">
+                                </div>
+                                <div class="col-md-7" style="height: 112px;">
+                                    <div class="card-body p-0">
+                                        <h5 class="card-title w-100 bg-orange-tr opacity-1 text-white p-1">
+                                            <span class="me-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-person-lines-fill"
+                                                    viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z" />
+                                                </svg>
+                                            </span> Proovedores
+                                        </h5>
+                                        <div class="px-3">
+                                            <div class="d-flex flew-wrap justify-content-evenly mb-3">
+                                                <span *ngFor="let mat of prov?.materiales"
+                                                    class="badge me-1 bg-danger">{{
+                                                    mat?.nombre }}</span>
+                                            </div>
+                                            <p>{{ prov?.ciudad | titlecase }}, {{ prov?.pais | titlecase }}</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </carousel>
+            </section>
+        </ng-template>
+    </ng-container>
+
+
+    <!-- Sección de contacto -->
+    <section class="container-section-footer">
+        <div class="container container-section bg-white p-0" style="box-shadow: none;">
+            <div class="row">
+                <div id="contacto" class="col-6 p-5 d-flex flex-column justify-content-between">
+                    <h3 class="card-title fs-3 fw-bold px-2">CONTACTO</h3>
+                    <p>
+                        <span class="me-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-geo-alt" viewBox="0 0 16 16">
+                                <path
+                                    d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
+                                <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                            </svg>
+                        </span> {{ data?.contacto?.direccion | titlecase }}
+                    </p>
+                    <p>
+                        <span class="me-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
+                                <path
+                                    d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z" />
+                            </svg></span> {{ data?.contacto?.telefono }}
+                    </p>
+                    <p> <span class="me-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-envelope" viewBox="0 0 16 16">
+                                <path
+                                    d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
+                            </svg>
+                        </span>
+                        {{ data?.contacto?.email }}</p>
+                    <div class="d-flex">
+                        <a href=" {{ data?.contacto?.facebook }}" target="_blank" class="me-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="none" d="M0 0h24v24H0z" />
+                                <path
+                                    d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12c0-5.523-4.477-10-10-10z"
+                                    fill="rgba(50,152,219,1)" />
+                            </svg>
+                        </a>
+                        <a href=" {{ data?.contacto?.instagram }}" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="none" d="M0 0h24v24H0z" />
+                                <path
+                                    d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153a4.908 4.908 0 0 1 1.153 1.772c.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 0 1-1.153 1.772 4.915 4.915 0 0 1-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 0 1-1.772-1.153 4.904 4.904 0 0 1-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 0 1 1.153-1.772A4.897 4.897 0 0 1 5.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.25a1.25 1.25 0 0 0-2.5 0 1.25 1.25 0 0 0 2.5 0zM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"
+                                    fill="rgba(225,48,108,1)" />
+                            </svg>
+                        </a>
+
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div id="mapa" style="height: 100%; width: 100%;">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Sección de footer -->
+    <footer class="container-fluid pt-4">
+        <div class="d-flex h-100 justify-content-center align-items-center">
+            <span class="text-white me-2">En colaboración con</span>
+            <img class="img-fluid img-logo-hxn" src="/assets/LOGO_HXN_BLANCOFINAL.png" alt="LOGO_HXN_BLANCOFINAL">
+        </div>
+    </footer>
+</main>

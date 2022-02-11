@@ -1,0 +1,84 @@
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="login100-pic js-tilt" data-tilt>
+                <img src="" alt="IMG">
+            </div>
+
+            <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="login100-form-validate-form">
+                <span class="login100-form-title">
+                    <img src="assets/HECHO POR NOSOTROS/LOGO_HXN_COLOR.png" alt="IMG" class="foto">
+
+                </span>
+
+                <h1 class="text-center mt-5" style="font-size: 40px;">Bienvenidos</h1>
+                <div class="contraseña mt-5">
+                    <mat-icon style="position: absolute; margin-left: 0.5%; font-size: 35px;">person</mat-icon>
+                    <span class="symbol-input100">
+                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="envelope" class="svg-inline--fa fa-envelope fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"></svg>
+                    </span>
+
+                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                        <input class="input100 font_login" type="email"  name="email" placeholder="Nombre de Usuario" formControlName="email">
+                    </div>
+                </div>
+                <div class="text-danger" *ngIf="valueRequired('email')">
+                    El formato del email es incorrecto.
+                </div>
+
+                <div class="contraseña">
+
+                    <mat-icon style="position: absolute; margin-left: 0.5%; font-size: 35px;">lock</mat-icon>
+                    <span class="symbol-input100">
+                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="unlock" class="svg-inline--fa fa-unlock fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"></svg>
+                    </span>
+
+                    <div class="wrap-input100 validate-input" data-validate="password is required">
+                        <input class="input100 font_login" type="password" name="password" placeholder="Password"
+                            formControlName="password">
+                    </div>
+                </div>
+
+                <div class="text-danger" *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched">
+                    Contraseña requerida(Debe tener un mínimo de 6 caracteres).
+                </div>
+
+                   
+                    <div style="margin-left: 65%;">
+                        <a [routerLink]="['/forgot-password']" class="txt4">
+                            <h4> ¿Has olvidado tu contraseña?</h4>
+                        </a>
+                    </div>
+           
+
+                
+                <div class="container-login100-form-btn">
+                    
+                    <button type="button" (click)="onLogin()" class="login100-form-btn fuente" [disabled]="loginForm.invalid" >
+                            <h5 class="fuente" style="font-size: medium;">Ingresar</h5>
+                        </button>
+             
+                </div>
+                <div class="form-group mt-3">
+                    <h3>O ingresá con</h3>
+                    <button type="button" (click)="onGoogleLogin() " class="boton"><img src="assets/HECHO POR NOSOTROS/image (3).png"
+                            alt="foto"></button>
+                </div>
+
+                <div class="text-center p-t-136">
+                    <a [routerLink]="['/register']" class="txt3"> Regístrate</a>
+                </div>
+                <div *ngIf="success" class="alert alert-success" role="alert" style="text-align: center; padding: 20px; margin-top: 20px;">
+                    Sesión Iniciada!
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="failure" style="text-align: center; padding: 20px; margin-top: 20px;">
+                    Datos incorrectos!
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="googleFailure"
+                    style="text-align: center; padding: 20px; margin-top: 20px;">
+                    Ocurrió un error al ingresar!
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
